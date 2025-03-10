@@ -7,10 +7,10 @@ import (
 )
 
 func main() {
-	playgroundExample()
+	playgroundExpressionCompletudeValidator()
 }
 
-func playgroundExample() {
+func playgroundExpressionCompletudeValidator() {
 	expValidator := stacks.NewExpressionCompletudeValidator()
 
 	expValidator.Push('(')

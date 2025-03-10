@@ -34,13 +34,6 @@ func (s *Stack) Peek(index int) (rune, bool) {
 	return 0, false
 }
 
-//	tests := []string{
-//		"((2 + 3) * (5 / 2))", // ✅ Válido
-//		"(2 + 3) * (5 / 2))",  // ❌ Inválido
-//		"((1 + 2)",            // ❌ Inválido
-//		"()()()",              // ✅ Válido
-//		"((a + b) * c)",       // ✅ Válido
-//	}
 func (s *Stack) IsBalanced(expression string) bool {
 
 	stack := NewExpressionCompletudeValidator()
