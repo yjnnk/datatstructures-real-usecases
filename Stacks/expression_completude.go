@@ -1,18 +1,18 @@
 package stacks
 
-type Stack struct {
+type ExpStack struct {
 	items []rune
 }
 
-func NewExpressionCompletudeValidator() *Stack {
-	return &Stack{items: []rune{}}
+func NewExpressionCompletudeValidator() *ExpStack {
+	return &ExpStack{items: []rune{}}
 }
 
-func (s *Stack) Push(item rune) {
+func (s *ExpStack) PushToExpStack(item rune) {
 	s.items = append(s.items, item)
 }
 
-func (s *Stack) Pop() (rune, bool) {
+func (s *ExpStack) PopFromExpStack() (rune, bool) {
 	if len(s.items) == 0 {
 		return 0, false
 	}
@@ -24,7 +24,7 @@ func (s *Stack) Pop() (rune, bool) {
 	return popped, true
 }
 
-func (s *Stack) Peek(index int) (rune, bool) {
+func (s *ExpStack) PeekAtExpStack(index int) (rune, bool) {
 	for idx, item := range s.items {
 		if idx == index {
 			return item, true
@@ -34,19 +34,18 @@ func (s *Stack) Peek(index int) (rune, bool) {
 	return 0, false
 }
 
-func (s *Stack) IsBalanced(expression string) bool {
-
+func (s *ExpStack) IsBalanced(expression string) bool {
 	stack := NewExpressionCompletudeValidator()
 
 	for _, char := range expression {
 		if char == '(' {
-			stack.Push(char)
+			stack.PushToExpStack(char)
 		} else if char == ')' {
-			if _, ok := stack.Pop(); !ok {
+			if _, ok := stack.PopFromExpStack(); !ok {
 				return false
 			}
 		}
 	}
 
-	return len(s.items) == 0
+	return len(stack.items) == 0
 }

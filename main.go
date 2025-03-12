@@ -3,22 +3,23 @@ package main
 import (
 	"fmt"
 
-	"github.com/yjnnk/datatstructures-real-usecases/stacks"
+	stacks "github.com/yjnnk/datatstructures-real-usecases/Stacks"
 )
 
 func main() {
 	playgroundExpressionCompletudeValidator()
+	playgroundDoRedoStack()
 }
 
 func playgroundExpressionCompletudeValidator() {
 	expValidator := stacks.NewExpressionCompletudeValidator()
 
-	expValidator.Push('(')
-	expValidator.Push('(')
-	expValidator.Push(')')
-	expValidator.Push(')')
+	expValidator.PushToExpStack('(')
+	expValidator.PushToExpStack('(')
+	expValidator.PushToExpStack(')')
+	expValidator.PushToExpStack(')')
 
-	v1, v2 := expValidator.Peek(5)
+	v1, v2 := expValidator.PeekAtExpStack(2)
 	fmt.Printf("%c, %t", v1, v2)
 
 	tests := []string{
@@ -32,4 +33,20 @@ func playgroundExpressionCompletudeValidator() {
 	for _, test := range tests {
 		fmt.Printf("Expressão: %s → Balanceado? %v\n", test, expValidator.IsBalanced(test))
 	}
+}
+
+func playgroundDoRedoStack() {
+	editor := stacks.NewTextEdit()
+
+	editor.AddText("Hello, World!")
+	editor.ShowText()
+
+	editor.AddText("Hello, Go!")
+	editor.ShowText()
+
+	editor.UndoText()
+	editor.ShowText()
+
+	editor.RedoText()
+	editor.ShowText()
 }
